@@ -18,9 +18,13 @@ usr = "user"
 pass = "pass"
 
 client = vRAAPIClient(url, usr, passwd)
+
 resources = client.getAllResources()
+
 vmNetwork = client.getResourceNetworking("1b045274-f5de-4233-b800-e760fb3de4e2")
+
 print vmNetwork
+
 
 TODO
 - Lots
