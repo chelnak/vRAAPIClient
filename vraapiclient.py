@@ -4,12 +4,6 @@ from __future__ import unicode_literals
 import requests, json
 import sys
 
-#TODO - add external config file
-vcac_hostname = ""
-usr = ""
-usr_pass = ""
-default_tenant = ""
-
 def checkResponse(r):
 	#Quick logic to check the http response code
 	if r.status_code != 200:
@@ -39,7 +33,6 @@ def authenticate(host, user, password, tenant):
 
 	return usr_token
 
-
 class vRAAPIClient(object):
 	def __init__(self, host, username, password, tenant=None):
 		if tenant is None:
@@ -50,6 +43,9 @@ class vRAAPIClient(object):
 		self.password = password
 		self.tenant = tenant
 		self.token = authenticate(host, username, password, tenant)
+
+	def getToken(self):
+		print self.token
 
 	def getResource(self, id):
 		host = self.host
@@ -74,9 +70,6 @@ class vRAAPIClient(object):
 		resources = req.json()
 
 		return resources[u'content']
-	
-	def getToken(self):
-		print self.token
 	
 	def getResourceNetworking(self, id):
                 host = self.host
