@@ -1,9 +1,7 @@
 #!/usr/bin/python
-
-from __future__ import unicode_literals
+__author__ = 'https://github.com/chelnak'
 import requests, json
 import sys
-__author__ = 'https://github.com/chelnak'
 
 
 
@@ -32,14 +30,14 @@ def authenticate(host, user, password, tenant):
 		tenant = tenant for the user.
 	"""
 
-	headers = { 'Content-Type' : 'application/json', 'Accept' : 'application/json'}
+	headers = {'Content-Type' : 'application/json', 'Accept' : 'application/json'}
 	payload = {"username": user, "password": password, "tenant": tenant}
 	url = 'https://'+ host + '/identity/api/tokens'
 	r = requests.post(url = url, data = json.dumps(payload), headers = headers, verify = False)
 	checkResponse(r)
 	response =  r.json() 
 
-	usr_token = 'Bearer ' + response[u'id']
+	usr_token = 'Bearer ' + response['id']
 
 	return usr_token
 
@@ -106,7 +104,7 @@ class vRAAPIConsumerClient(object):
 		checkResponse(r)
 		resources = r.json()
 
-		return resources[u'content']
+		return resources['content']
 	
 	def getResourceNetworking(self, id):
 		"""
