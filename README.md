@@ -4,14 +4,14 @@ vRAAPIClient
 A python wrapper for the vRealize Automation REST API
 
 Created for two reasons:
-1 - because
-2 - Couldn't get cloudclient to do certain things and the API is more flexible
+- because
+- Couldn't get cloudclient to do certain things and the API is more flexible
 
 Returns API responses in JSON format
 
 Dependencies:
 ===========
-- Coming soon!
+- requests: http://docs.python-requests.org/en/latest/
 
 Basic usage:
 ============
