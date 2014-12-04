@@ -15,7 +15,7 @@ client = vRAAPIConsumerClient(url, usr, passwd)
 with open('request.json') as f:
 	payload = json.load(f)
 
-#Submit new request
+#Submit new request. requestResource returns the request id
 request = client.requestResource(payload)
 
 #Monitor request progress and break from loop when no longer IN_PROGRESS
@@ -33,6 +33,6 @@ if requestState['state'] != "SUCCESSFUL":
 
 #End goal here is to return networking info of the new vm so we can grab the IP and run any 
 #extra tasks etc
-resourceId = client.getResourceId(requestId)
+resourceId = client.getResourceId(request)
 resourceNetworking = client.getResourceNetworking(resourceId)
 print resourceNetworking

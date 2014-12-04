@@ -1,6 +1,7 @@
 #!/usr/bin/python
 __author__ = 'https://github.com/chelnak'
-import requests, json
+import requests
+import json
 import sys
 
 def checkResponse(r):
