@@ -3,8 +3,6 @@ __author__ = 'https://github.com/chelnak'
 import requests, json
 import sys
 
-
-
 def checkResponse(r):
 	"""
 	Quick logic to check the http response code.
