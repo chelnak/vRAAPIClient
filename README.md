@@ -9,7 +9,12 @@ Created for two reasons:
 
 Returns API responses in JSON format
 
-usage:
+Dependencies:
+===========
+- Coming soon!
+
+Basic usage:
+============
 
 from vraapiclient import vRAAPIClient
 
@@ -21,10 +26,16 @@ client = vRAAPIClient(url, usr, passwd)
 
 resources = client.getAllResources()
 
-vmNetwork = client.getResourceNetworking("1b045274-f5de-4233-b800-e760fb3de4e2")
+print resources
 
-print vmNetwork
+example.py:
+==========
+- chmod +x example.py
+- ./example.py
+- You must create a file containing the request data in JSON format. In this example it is called requests.json
+- Save requests.json in the same directory as your script
 
-
-TODO
-- Lots
+TODO:
+====
+- Create provider class
+- Create Admin class

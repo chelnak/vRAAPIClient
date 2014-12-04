@@ -88,6 +88,27 @@ class vRAAPIConsumerClient(object):
 	
 		return resource
 
+	def getResourceId(self, id):
+		"""
+		Function that will search for a resource with a matching requestId.
+
+		Parameters:
+			id = request id of the vRA resource.
+		"""
+
+		host = self.host
+                token = self.token
+
+                url = 'https://' + host + '/catalog-service/api/consumer/resources?$filter=request eq \'' + id +'\'' 
+                headers = {'Content-Type' : 'application/json', 'Accept' : 'application/json', 'Authorization' : token}
+                r = requests.get(url = url, headers = headers, verify = False)
+                checkResponse(r)
+                resource = r.json()
+		resourceId = resource['content'][0]['id']
+
+                return resourceId
+	
+
 	def getAllResources(self):
 		"""
 		Function that will return all resources that are available to the current user.
