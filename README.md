@@ -5,7 +5,7 @@ A python wrapper for the vRealize Automation REST API
 
 Created for two reasons:
 - because
-- Couldn't get cloudclient to do certain things and the API is more flexible
+- Cloudclient is great, but I like APIs and needed information that it did not provide at the time of writing
 
 Returns API responses in JSON format
 
@@ -16,13 +16,13 @@ Dependencies:
 Basic usage:
 ============
 
-from vraapiclient import vRAAPIClient
+from vraapiclient import vRAAPIConsumerClient
 
 url = "vra host"
 usr = "user"
 pass = "pass"
 
-client = vRAAPIClient(url, usr, passwd)
+client = vRAAPIConsumerClient(url, usr, passwd)
 
 resources = client.getAllResources()
 
@@ -33,9 +33,10 @@ example.py:
 - chmod +x example.py
 - ./example.py
 - You must create a file containing the request data in JSON format. In this example it is called requests.json
+- Read the following blog to learn how to caputre postData for the request
 - Save requests.json in the same directory as your script
 
 TODO:
 ====
 - Create provider class
-- Create Admin class
+- Create admin class
