@@ -33,7 +33,7 @@ example.py:
 - chmod +x example.py
 - ./example.py
 - You must create a file containing the request data in JSON format. In this example it is called requests.json
-- Read the following blog to learn how to caputre postData for the request
+- Read the following blog to learn how to caputre postData for the request: http://grantorchard.com/vcac/concepts/exploring-vcac-api-part-1/
 - Save requests.json in the same directory as your script
 
 TODO:
