@@ -3,10 +3,11 @@ from vraapiclient import vRAAPIConsumerClient
 import json
 from time import sleep
 import sys
+import getpass
 
 url = "vra.org.com"
 usr = "user"
-passwd = "password"
+passwd = getpass.getpass()
 
 #Create a new consumer API client
 client = vRAAPIConsumerClient(url, usr, passwd)
