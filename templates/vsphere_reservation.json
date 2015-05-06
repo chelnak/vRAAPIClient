@@ -1,0 +1,219 @@
+{  
+   "extensionData":{  
+      "entries":[  
+         {  
+            "value":{  
+               "items":[  
+                  {  
+                     "classId":"Infrastructure.Reservation.Network",
+                     "typeFilter":null,
+                     "componentTypeId":"com.vmware.csp.iaas.blueprint.service",
+                     "values":{  
+                        "entries":[  
+                           {  
+                              "value":{  
+                                 "classId":"Network",
+                                 "label":"{{ params.NetworkLabel }}",
+                                 "type":"entityRef",
+                                 "componentId":null,
+                                 "id":"{{ params.NetworkId }}"
+                              },
+                              "key":"networkPath"
+                           }
+                        ]
+                     },
+                     "type":"complex",
+                     "componentId":null
+                  }
+               ],
+               "elementTypeId":"COMPLEX",
+               "type":"multiple"
+            },
+            "key":"reservationNetworks"
+         },
+         {  
+            "value":{  
+               "classId":"Infrastructure.Reservation.Memory",
+               "typeFilter":null,
+               "componentTypeId":"com.vmware.csp.iaas.blueprint.service",
+               "values":{  
+                  "entries":[  
+                     {  
+                        "value":{  
+                           "type":"integer",
+                           "value":131002
+                        },
+                        "key":"computeResourceMemoryTotalSiMB"
+                     },
+                     {  
+                        "value":{  
+                           "type":"integer",
+                           "value": {{ params.ComputeResourceReservedMemMb | int }}
+                        },
+                        "key":"memoryReservedSizeMb"
+                     }
+                  ]
+               },
+               "type":"complex",
+               "componentId":null
+            },
+            "key":"reservationMemory"
+         },
+         {  
+            "value":{  
+               "items":[  
+                  {  
+                     "classId":"VCNSSecurityGroup",
+                     "label":"{{ params.VCNSSecurityGroupLabel }}",
+                     "type":"entityRef",
+                     "componentId":null,
+                     "id":"{{ params.VCNSSecurityGroupId }}"
+                  }
+               ],
+               "elementTypeId":"ENTITY_REFERENCE",
+               "type":"multiple"
+            },
+            "key":"vCNSSecurityGroups"
+         },
+         {  
+            "value":{  
+               "classId":"ComputeResource",
+               "label":"{{ params.ComputeResourceLabel }}",
+               "type":"entityRef",
+               "componentId":null,
+               "id":"{{ params.ComputeResourceId }}"
+            },
+            "key":"computeResource"
+         },
+         {  
+            "value":{  
+               "type":"integer",
+               "value": {{ params.MachineQuota | int }}
+            },
+            "key":"machineQuota"
+         },
+         {  
+            "value":{  
+               "items":[  
+
+               ],
+               "elementTypeId":"COMPLEX",
+               "type":"multiple"
+            },
+            "key":"vCNSRoutedGateways"
+         },
+         {  
+            "value":{  
+               "items":[  
+                  {  
+                     "classId":"Infrastructure.Reservation.Storage",
+                     "typeFilter":null,
+                     "componentTypeId":"com.vmware.csp.iaas.blueprint.service",
+                     "values":{  
+                        "entries":[  
+                           {  
+                              "value":{  
+                                 "type":"integer",
+                                 "value":500
+                              },
+                              "key":"computeResourceStorageTotalSizeGB"
+                           },
+                           {  
+                              "value":{  
+                                 "classId":"Storage",
+                                 "label":"{{ params.StorageLabel0 }}",
+                                 "type":"entityRef",
+                                 "componentId":null,
+                                 "id":"{{ params.StorageId0 }}"
+                              },
+                              "key":"storagePath"
+                           },
+                           {  
+                              "value":{  
+                                 "type":"integer",
+                                 "value": {{ params.StorageReservationPriority0 | int }}
+                              },
+                              "key":"storageReservationPriority"
+                           },
+                           {  
+                              "value":{  
+                                 "type":"integer",
+                                 "value": {{ params.StorageSizeGB0 | int }}
+                              },
+                              "key":"storageReservedSizeGB"
+                           },
+                           {  
+                              "value":{  
+                                 "type":"boolean",
+                                 "value": true
+                              },
+                              "key":"storageEnabled"
+                           },
+                           {  
+                              "value":{  
+                                 "type":"integer",
+                                 "value":236
+                              },
+                              "key":"computeResourceStorageFreeSizeGB"
+                           }
+                        ]
+                     },
+                     "type":"complex",
+                     "componentId":null
+                  }
+               ],
+               "elementTypeId":"COMPLEX",
+               "type":"multiple"
+            },
+            "key":"reservationStorages"
+         },
+         {  
+            "value":{  
+               "classId":"ResourcePool",
+               "label":"{{ params.ResourcePoolLabel }}",
+               "type":"entityRef",
+               "componentId":null,
+               "id":"{{ params.ResourcePoolId }}"
+            },
+            "key":"resourcePool"
+         }
+      ]
+   },
+   "name":"{{ params.ReservationName }}",
+   "enabled": true,
+   "tenantId":"{{ params.TenantId }}",
+   "priority":1,
+   "reservationPolicyId":null,
+   "subTenantId":"{{ params.BusinessGroupId }}",
+   "reservationTypeId":"Infrastructure.Reservation.Virtual.vSphere",
+   "alertPolicy":{  
+      "frequencyReminder": {{ params.AlertFrequency | int }},
+      "alerts":[  
+         {  
+            "referenceResourceId":"storage",
+            "alertPercentLevel":{{ params.AlertStoragePercent | int }},
+            "id":"storage"
+         },
+         {  
+            "referenceResourceId":"memory",
+            "alertPercentLevel":{{ params.AlertMemoryPercent |int }},
+            "id":"memory"
+         },
+         {  
+            "referenceResourceId":"cpu",
+            "alertPercentLevel":{{ params.AlertCPUPercent | int }},
+            "id":"cpu"
+         },
+         {  
+            "referenceResourceId":"machine",
+            "alertPercentLevel":{{ params.AlertMemoryPercent | int }},
+            "id":"machine"
+         }
+      ],
+      "enabled": true,
+      "recipients":[  
+         "{{ params.AlertRecepients }}"
+      ],
+      "emailBgMgr": true
+   }
+}
