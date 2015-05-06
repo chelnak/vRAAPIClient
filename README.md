@@ -16,6 +16,7 @@ Dependencies:
 Basic usage:
 ============
 Consumer API:
+-------------
 
 from vraapiclient import vRAAPIConsumerClient
 
@@ -24,10 +25,13 @@ usr = "user"
 pass = "pass"
 
 client = vRAAPIConsumerClient(url, usr, passwd)
+
 resources = client.getAllResources()
+
 print resources
 
 Reservation Service API:
+------------------------
 
 from vraapiclient import vRAAPIReservationClient
 
@@ -36,6 +40,7 @@ usr = "user"
 pass = "pass"
 
 client = vRAAPIReservationClient(url, usr, passwd)
+
 client.getAllReservations()
 
 Example Scripts:
