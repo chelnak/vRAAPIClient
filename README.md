@@ -69,6 +69,6 @@ TODO:
 Change log:
 ===========
 06/05/2015:
-	- Added: Reservation service API client based on the steps here -> http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-11510887-0F55-4EA4-858C-9881F94C718B.html
-	- Reservation_example.py and templates/vsphere_reservation.json. Contains examples of how to use the vRAAPIAPIReservationClient with jinja2 templates
-	- Implemented PrettyTables for formatting outputs of some functions.. The plan is to back port these in to the vRAAPIConsumerClient
+- Added: Reservation service API client based on the steps here -> http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-11510887-0F55-4EA4-858C-9881F94C718B.html
+- Reservation_example.py and templates/vsphere_reservation.json. Contains examples of how to use the vRAAPIAPIReservationClient with jinja2 templates
+- Implemented PrettyTables for formatting outputs of some functions.. The plan is to back port these in to the vRAAPIConsumerClient
