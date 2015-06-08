@@ -1,15 +1,13 @@
-from vraapiclient import vRAAPIReservationClient
-import json
 import getpass
+import json
+
 from jinja2 import Environment, FileSystemLoader
+
+from vraapiclient import vRAAPIReservationClient
 
 url = ''
 usr = ''
 passwd = getpass.getpass()
-
-#Requirements
-#getpass
-#jinja2
 
 #Create a new Reservation-Service API client
 client = vRAAPIReservationClient(url, usr, passwd)
@@ -21,34 +19,35 @@ template = env.get_template('vsphere_reservation.json')
 
 #Set all configurable parameters here
 params = {
-        'ReservationName'       	: 'JINJA2-API-Reservation',
-	'ReservationEnabled'		: 'true', #Booleans - couldn't get it to work with jinja2
-	'TenantId'			: 'vsphere.local',
-        'BusinessGroupId'       	: '',
-        'ResourcePoolLabel'     	: '',
-        'ResourcePoolId'        	: '',
-        'ComputeResourceLabel'  	: '',
-        'ComputeResourceId'     	: '',
-	'ComputeResourceReservedMemMb'	: '',
-	'MachineQuota'			: '',
-        'NetworkLabel'          	: '',
-        'NetworkId'             	: '',
-        'VCNSSecurityGroupLabel'	: '',
-        'VCNSSecurityGroupId'   	: '',
-	'AlertEnabled'			: 'true', #Booleans - couldn't get it to work with jinja2
-	'AlertFrequency'		: '1',
-	'AlertStoragePercent'		: '80',
-	'AlertMemoryPercent'		: '80',
-	'AlertCPUPercent'		: '80',
-	'AlertMachinePercent'		: '80',
-        'AlertRecepients'		: 'test@company.com',
-	'AlertEmailMgr'			: 'true', #Booleans - couldn't get it to work with jinja2
-	'StorageLabel0'			: '',
-	'StorageId0'			: '',
-	'StorageSizeGB0'		: '250',
-	'StorageReservationPriority0'	: '0',
-	'StorageEnabled0'		: 'true' #Booleans - couldn't get it to work with jinja2
-        }
+    'ReservationName': 'JINJA2-API-Reservation',
+    'ReservationEnabled': 'true',
+    #Booleans - couldn't get it to work with jinja2
+    'TenantId': 'vsphere.local',
+    'BusinessGroupId': '',
+    'ResourcePoolLabel': '',
+    'ResourcePoolId': '',
+    'ComputeResourceLabel': '',
+    'ComputeResourceId': '',
+    'ComputeResourceReservedMemMb': '',
+    'MachineQuota': '',
+    'NetworkLabel': '',
+    'NetworkId': '',
+    'VCNSSecurityGroupLabel': '',
+    'VCNSSecurityGroupId': '',
+    'AlertEnabled': 'true',  #Booleans - couldn't get it to work with jinja2
+    'AlertFrequency': '1',
+    'AlertStoragePercent': '80',
+    'AlertMemoryPercent': '80',
+    'AlertCPUPercent': '80',
+    'AlertMachinePercent': '80',
+    'AlertRecepients': 'test@company.com',
+    'AlertEmailMgr': 'true',  #Booleans - couldn't get it to work with jinja2
+    'StorageLabel0': '',
+    'StorageId0': '',
+    'StorageSizeGB0': '250',
+    'StorageReservationPriority0': '0',
+    'StorageEnabled0': 'true'  #Booleans - couldn't get it to work with jinja2
+}
 
 #Create the JSON payload for the POST
 payload = json.loads(template.render(params=params))
