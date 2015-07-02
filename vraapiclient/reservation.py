@@ -12,14 +12,14 @@ class ReservationClient(object):
     #http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-7697320D-F3BD-4A42-8721-FBC971B47195.html
     def __init__(self, host, username, password, tenant=None):
         """
-                Creates a connection to the vRA REST API using the provided
-                username and password.
-                Parameters:
-                        host = vRA Appliance fqdn
-                        user = user account with access to the vRA portal
-                        passowrd = valid password for above user
-                        tenant = tenant for user. if this is NONE it will default to "vsphere.local"
-                """
+        Creates a connection to the vRA REST API using the provided
+        username and password.
+        Parameters:
+            host = vRA Appliance fqdn
+            user = user account with access to the vRA portal
+            passowrd = valid password for above user
+            tenant = tenant for user. if this is NONE it will default to "vsphere.local"
+        """
 
         if tenant is None:
             tenant = "vsphere.local"
