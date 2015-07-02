@@ -20,6 +20,5 @@ setup(name='vRAAPIClient',
           "Intended Audience :: Information Technology",
           "Intended Audience :: System Administrators",
           "Topic :: Software Development :: Libraries :: Python Modules",
-          "Topic :: System :: Distributed Computing"
       ],
       zip_safe=True)
