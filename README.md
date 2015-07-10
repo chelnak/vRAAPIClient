@@ -24,7 +24,7 @@ Consumer API:
 import getpass
 import json
 
-from vraapiclient import catalog
+from vraapiclient import reservation
 
 url = ''
 usr = ''
@@ -57,6 +57,7 @@ client.getAllReservations()
 
 TODO:
 ====
+- Need to add a full example of using JINGA2 templating and the reservation client
 - Create provider class
 - Create admin class
 - Better error handling
