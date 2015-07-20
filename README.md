@@ -24,7 +24,7 @@ Consumer API:
 import getpass
 import json
 
-from vraapiclient import reservation
+from vraapiclient import catalog
 
 url = ''
 usr = ''
@@ -44,7 +44,7 @@ Reservation Service API:
 import getpass
 import json
 
-from vraapiclient import catalog
+from vraapiclient import reservation
 
 url = ''
 usr = ''
