@@ -1,5 +1,3 @@
-#Change log
-
 ##22/07/2015
 * Making a start on some documentation
 
