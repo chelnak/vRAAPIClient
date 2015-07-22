@@ -5,7 +5,6 @@ automatically when you run setup.py
 * requests http://docs.python-requests.org/en/latest/
 * prettytable https://code.google.com/p/prettytable/
 
-
 #Basic Installation
 Installation is fairly simple. Start by cloning the github repo then install using
 the setup.py file provided
@@ -35,13 +34,10 @@ python setup.py install
 
 You can then run pip freeze to see what has been installed
 
-
 #Basic Usage
 
-Basic usage
-============
-Consumer API
--------------
+##Consumer API
+
 ```
 #!/usr/bin/python
 import getpass
@@ -60,8 +56,8 @@ client = catalog.ConsumerClient(url, usr, passwd)
 client.getEntitledCatalogItems()
 ```
 
-Reservation Service API
-------------------------
+##Reservation Service API
+
 ```
 #!/usr/bin/python
 import getpass
