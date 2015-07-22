@@ -1,0 +1,7 @@
+---
+  site_name: vRAAPIClient
+  pages:
+    - 'Getting Started': 'getting_started.md'
+    - 'Catalog-Service Client': 'Catalog-Service_Client.md'
+    - 'Reservation-Service Client': 'Reservation-Service_Client.md'
+    - 'Changelog': 'Changelog.md'
