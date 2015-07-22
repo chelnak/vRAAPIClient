@@ -59,7 +59,7 @@ class ReservationClient(object):
 
         return reservationTypes[u'content']
 
-    def gerReservationSchema(self, schemaclassid):
+    def getReservationSchema(self, schemaclassid):
         """
 		Displaying a schema definition for a reservation
 		http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-E957942A-1CCC-4C16-8147-0F5D382CDCB5.html
