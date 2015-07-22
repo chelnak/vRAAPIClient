@@ -1,6 +1,12 @@
-#Installation
+#Dependencies
+The following dependencies are required for vRAAPIClient to work and will be installed
+automatically when you run setup.py
 
-##Basic Installation
+* requests http://docs.python-requests.org/en/latest/
+* prettytable https://code.google.com/p/prettytable/
+
+
+#Basic Installation
 Installation is fairly simple. Start by cloning the github repo then install using
 the setup.py file provided
 
@@ -10,7 +16,7 @@ cd vRAAPIClient
 python setup.py install
 ```
 
-##Installation with virtualenv
+#Installation with virtualenv
 Sometimes its nice to know that your python projects are isolated. This is why I like to
 use virtualenv.
 
@@ -31,3 +37,43 @@ You can then run pip freeze to see what has been installed
 
 
 #Basic Usage
+
+Basic usage
+============
+Consumer API
+-------------
+```
+#!/usr/bin/python
+import getpass
+import json
+
+from vraapiclient import catalog
+
+url = ''
+usr = ''
+passwd = getpass.getpass()
+
+#Create a new consumer API client
+client = catalog.ConsumerClient(url, usr, passwd)
+
+#print out a table of all entitled catalog items for the current user
+client.getEntitledCatalogItems()
+```
+
+Reservation Service API
+------------------------
+```
+#!/usr/bin/python
+import getpass
+import json
+
+from vraapiclient import reservation
+
+url = ''
+usr = ''
+passwd = getpass.getpass()
+
+client = client.ReservationClient(url, usr, passwd)
+
+client.getAllReservations()
+```
