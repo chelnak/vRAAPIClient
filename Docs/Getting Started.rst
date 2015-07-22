@@ -1,3 +1,5 @@
+.. _main_page:
+
 #Installation
 
 ##Basic Installation
