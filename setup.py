@@ -8,7 +8,7 @@ def read(fname):
 
 
 setup(name='vRAAPIClient',
-      version='0,1',
+      version='1.0',
       description='vRealize Automation API Client',
       author='chelnak',
       author_email='',
