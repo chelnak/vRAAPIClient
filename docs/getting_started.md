@@ -52,8 +52,13 @@ passwd = getpass.getpass()
 #Create a new consumer API client
 client = catalog.ConsumerClient(url, usr, passwd)
 
-#print out a table of all entitled catalog items for the current user
+#Print out a table of all entitled catalog items for the current user
 client.getEntitledCatalogItems()
+
+#Or get the response in JSON so you can decided how to parse the data
+r = client.getEntitledCatalogItems(show="json")
+print r
+
 ```
 
 ##Reservation Service API
@@ -71,5 +76,13 @@ passwd = getpass.getpass()
 
 client = client.ReservationClient(url, usr, passwd)
 
+#Print out a table of all reservations
 client.getAllReservations()
+
+#Or get the response in JSON so you can decided how to parse the data
+r = client.getAllReservations(show="json")
+print r
+
+
+
 ```
