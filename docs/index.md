@@ -8,7 +8,7 @@ Currently there is support for the following API endpoints:
 * Reservation-Service API client: Create and view reservations
 
 Responses will be in JSON or formatted in a table layout. This can be changed by
-using the show="JSON" / show="table" parameter on some functions. This is not fully
+using the show="json" / show="table" parameter on some functions. This is not fully
 implimented yet so make sure you read the classes to know which functions support
 it.
 
