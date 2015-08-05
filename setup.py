@@ -15,10 +15,12 @@ setup(name='vRAAPIClient',
       install_requires=['requests', 'prettytable'],
       packages=['vraapiclient'],
       long_description=read('README.md'),
+      keywords=['VMWare', 'vRealize Automation', 'vRA']
       classifiers=[
-          "Environment :: No Input/Output (Daemon)",
-          "Intended Audience :: Information Technology",
-          "Intended Audience :: System Administrators",
-          "Topic :: Software Development :: Libraries :: Python Modules",
+          'Environment :: No Input/Output (Daemon)'',
+          'Intended Audience :: Information Technology',
+          'Intended Audience :: System Administrators',
+          'Topic :: Software Development :: Libraries :: Python Modules',
+          'Programming Language :: Python :: 2.7',
       ],
       zip_safe=True)
