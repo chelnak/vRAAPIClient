@@ -17,7 +17,7 @@ setup(name='vRAAPIClient',
       long_description=read('README.md'),
       keywords=['VMWare', 'vRealize Automation', 'vRA'],
       classifiers=[
-          'Environment :: No Input/Output (Daemon)'',
+          'Environment :: No Input/Output (Daemon)',
           'Intended Audience :: Information Technology',
           'Intended Audience :: System Administrators',
           'Topic :: Software Development :: Libraries :: Python Modules',
