@@ -23,7 +23,7 @@ params = {
     'SubTenantId': 'ad0073e7-401f-4a39-ac84-519a891a13ff',
 }
 
-#Create the JSON payload for the POS
+#Create the JSON payload for the POST
 #This is where params are added to the json payload
 
 payload = json.loads(template.render(params=params))
@@ -31,4 +31,3 @@ payload = json.loads(template.render(params=params))
 reservation = client.createReservation(payload)
 
 print "Reservation created: {id}".format(id=reservation)
-
