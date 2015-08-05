@@ -1,3 +1,8 @@
+##05/08/2015
+* Added documentation for the catalog ConsumerClient
+* Changed getResourceId to getResourceIdByRequestId in catalog.py
+* Fixed table print issue for getAllResources in catalog.py
+
 ##22/07/2015
 * Making a start on some documentation
 
