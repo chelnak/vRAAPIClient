@@ -107,7 +107,7 @@ class ConsumerClient(object):
             for i in resources['content']:
                 table.add_row([i['id'], i['name']])
 
-                print table
+            print table
 
         elif show == 'json':
             return resources['content']
