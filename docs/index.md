@@ -18,4 +18,4 @@ Please see Basic Usage for some examples of this!
 This project has been built by following the vRA REST API Reference provided by
 VMware.
 
-Please take some time to familiarize yourself with it: [here](http://pubs.vmware.com/vra-62/index.jsp?topic=%2Fcom.vmware.vra.restapi.doc%2Findex.html&__utma=207178772.178252748.1437379173.1438264451.1438768134.5&__utmb=207178772.1.10.1438768134&__utmc=207178772&__utmx=-&__utmz=207178772.1438264451.4.3.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)&__utmv=-&__utmk=137532467)
+Please take some time to familiarize yourself with it: [here](http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.restapi.doc/index.html)

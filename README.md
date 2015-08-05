@@ -4,17 +4,9 @@
 
 A python wrapper for the vRealize Automation REST API
 
-* Consumer catalog API client: Request and view resources
+* Catalog Service Consumer API client: Request and view resources
 * Reservation Service API client: Create and view reservations
-
-Returns API responses in JSON format
 
 For documentation please visit http://vraapiclient.readthedocs.org/
 
-#TODO
-
-* Create provider class
-* Create admin class
-* Better error handling
-* Boolean support with jinja?
-* Better docs
+Also please check out the official vRealize [Automation REST API Reference](http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.restapi.doc/index.html)
