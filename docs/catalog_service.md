@@ -5,7 +5,7 @@
 Return all resources that are available to the current user.
 
 ###Parameters
-* show[string] = This determines what is returned. Use json to return a json object or
+* [string]show = This determines what is returned. Use json to return a json object or
                     table to return a table. This parameter is not mandatory.
 
 By default this function will return a table containing the id and name of the
@@ -40,7 +40,7 @@ print resourcesRaw
 Get a vRA resource by Id
 
 ###Parameters
-* id[string] = id of the vRA resource
+* [string]id = id of the vRA resource
 
 This function will return a json object. You can interact with this object in the same way
 that you would with any object.
@@ -65,7 +65,7 @@ print resourcesRaw
 Return networking information for a given resource.
 
 ###Parameters
-* id[string] = Id of the vRA Resource
+* [string]id = Id of the vRA Resource
 
 This function will return a json object. You can interact with this object in the same way
 that you would with any object.
@@ -93,7 +93,7 @@ print networkingRaw
 Return all entitled catalog items for the current user.
 
 ###Parameters
-* show[string] = This determines what is returned. Use json to return a json object or
+* [string]show = This determines what is returned. Use json to return a json object or
                     table to return a table. This parameter is not mandatory.
 
 By default this function will return a table containing the id and name of the
@@ -128,7 +128,7 @@ print entitledCatalogItemsRaw
 Submit a request based on payload
 
 ###Parameters
-* payload[json] = json request (example: request.json)
+* [json]payload = json request (example: request.json)
 
 Before using this function you will need to generate a blueprint request file.
 
@@ -166,7 +166,7 @@ For more detailed examples please see the examples/requests directory of this pr
 Return information on a given request
 
 ###Parameters
-* id[string] = Id of the vRA request.
+* [string]id = Id of the vRA request.
 
 ```
 request = clientRequest(requestId)
@@ -178,7 +178,7 @@ print request['state']
 Search for a resource with a matching request id
 
 ###Parameters
-* id[string] = Request id of the vRA resource
+* [string]id = Request id of the vRA resource
 
 When you deploy a machine with requestResource() it will return the request id. Use this function
 to get the ID of the resource you have just deployed. Once you have the resource id, you can go on
