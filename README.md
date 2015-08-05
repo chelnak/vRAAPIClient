@@ -2,7 +2,7 @@
 
 #Welcome to vRAAPIClient
 
-A python wrapper for the vRealize Automation REST API
+vRAAPIClient is a python wrapper for the vRealize Automation REST API. It currently supports:
 
 * Catalog Service Consumer API client: Request and view resources
 * Reservation Service API client: Create and view reservations
