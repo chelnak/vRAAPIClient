@@ -60,7 +60,7 @@ class ConsumerClient(object):
 
         return resource
 
-    def getResourceId(self, id):
+    def getResourceIdByRequestId(self, id):
         """
 		Function that will search for a resource with a matching requestId.
 		Parameters:
