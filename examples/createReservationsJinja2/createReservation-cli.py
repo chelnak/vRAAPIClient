@@ -8,7 +8,6 @@ from argparse import ArgumentParser
 from jinja2 import Environment, FileSystemLoader
 from vraapiclient import reservation
 
-
 def getArgs():
 
     parser = ArgumentParser(
