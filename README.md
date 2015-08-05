@@ -9,4 +9,4 @@ A python wrapper for the vRealize Automation REST API
 
 For documentation please visit http://vraapiclient.readthedocs.org/
 
-Also please check out the official vRealize [Automation REST API Reference](http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.restapi.doc/index.html)
+Also please check out the official [vRealize Automation REST API Reference](http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.restapi.doc/index.html)
