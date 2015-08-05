@@ -4,7 +4,7 @@
 
 Return all resources that are available to the current user.
 
-Parameters:
+Parameters
 * show[string] = This determines what is returned. Use json to return a json object or
                     table to return a table. This parameter is not mandatory.
 
@@ -39,7 +39,7 @@ print resourcesRaw
 
 Get a vRA resource by Id
 
-Parameters:
+Parameters
 * id[string] = id of the vRA resource
 
 This function will return a json object. You can interact with this object in the same way
@@ -64,7 +64,7 @@ print resourcesRaw
 
 Return networking information for a given resource.
 
-Parameters:
+Parameters
 * id[string] = Id of the vRA Resource
 
 This function will return a json object. You can interact with this object in the same way
@@ -82,7 +82,7 @@ for i in networking:
 If you want to return raw json, you will need to use json.dumps().
 
 ```
-resourceId='171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
+resourceId = '171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
 networking = client.getResourceNetworking(id=resourceId)
 networkingRaw = json.dumps(networking)
 print networkingRaw
@@ -92,7 +92,7 @@ print networkingRaw
 
 Return all entitled catalog items for the current user.
 
-Parameters:
+Parameters
 * show[string] = This determines what is returned. Use json to return a json object or
                     table to return a table. This parameter is not mandatory.
 
@@ -127,7 +127,7 @@ print entitledCatalogItemsRaw
 
 Submit a request based on payload
 
-Parameters:
+Parameters
 * payload[json] = json request (example: request.json)
 
 Before using this function you will need to generate a blueprint request file.
@@ -145,7 +145,6 @@ import os
 from globalconfig import passwd, url, usr
 from vraapiclient import catalog
 
-
 #Get the current directory
 currentDirectory = os.path.dirname(os.path.abspath(__file__))
 
@@ -160,12 +159,13 @@ request = client.requestResource(payload)
 print "Request submitted: {id}".format(id=request)
 ```
 
-For more detailed examples please see the examples/requests director of this project
+For more detailed examples please see the examples/requests directory of this project
 
 ##getRequest
 
 Return information on a given request
-Paramters:
+
+Parameters
 * id[string] = Id of the vRA request.
 
 ```
@@ -177,7 +177,7 @@ print request['state']
 
 Search for a resource with a matching request id
 
-Parameters:
+Parameters
 * id[string] = Request id of the vRA resource
 
 When you deploy a machine with requestResource() it will return the request id. Use this function
