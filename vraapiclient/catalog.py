@@ -66,7 +66,7 @@ class ConsumerClient(object):
                 resource['status'],
                 resource['catalogItem']['label']])
 
-                print table
+            print table
 
         elif show =='json':
             return resource
