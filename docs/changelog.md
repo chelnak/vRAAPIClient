@@ -1,3 +1,8 @@
+##06/08/2015
+* Version 1.0.1
+* Added show option to catalot.getResource and catalog.getResourceNetworking()
+* Updated docs
+
 ##05/08/2015
 * Added documentation for the catalog ConsumerClient
 * Changed getResourceId to getResourceIdByRequestId in catalog.py

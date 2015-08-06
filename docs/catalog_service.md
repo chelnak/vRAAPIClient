@@ -41,8 +41,17 @@ Get a vRA resource by Id
 
 ###Parameters
 * [string]id = id of the vRA resource
+* [string]show = This determines what is returned. Use json to return a json object or
+                    table to return a table. This parameter is not mandatory.
 
-This function will return a json object. You can interact with this object in the same way
+You can display data from this function in a table as follows:
+
+```
+resourceId='171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
+client.getResource(id=resourceId, show='table')
+```
+
+By default this function will return a json object. You can interact with this object in the same way
 that you would with any object.
 
 ```
@@ -66,8 +75,17 @@ Return networking information for a given resource.
 
 ###Parameters
 * [string]id = Id of the vRA Resource
+* [string]show = This determines what is returned. Use json to return a json object or
+                    table to return a table. This parameter is not mandatory.
 
-This function will return a json object. You can interact with this object in the same way
+You can display data from this function in a table as follows:
+
+``````
+resourceId='171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
+client.getResourceNetworking(id=resourceId, show='table')
+```
+
+By default this function will return a json object. You can interact with this object in the same way
 that you would with any object.
 
 ```
