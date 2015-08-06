@@ -4,9 +4,9 @@ __author__ = 'https://github.com/chelnak'
 import json
 
 import requests
-from prettytable import PrettyTable
 
 from helpers import authenticate, checkResponse
+from prettytable import PrettyTable
 
 
 class ConsumerClient(object):
@@ -38,7 +38,7 @@ class ConsumerClient(object):
 
         print self.token
 
-    def getResource(self, id):
+    def getResource(self, id, show='json'):
         """
 		Function that will get a vRA resource by id.
 		Parameters:
@@ -58,7 +58,18 @@ class ConsumerClient(object):
         checkResponse(r)
         resource = r.json()
 
-        return resource
+        if show == 'table':
+            table = PrettyTable(['Id', 'Name', 'Status', 'Catalog Item'])
+            table.add_row([
+                resource['id'],
+                resource['name'],
+                resource['status'],
+                resource['catalogItem']['label']])
+
+                print table
+
+        elif show =='json':
+            return resource
 
     def getResourceIdByRequestId(self, id):
         """
@@ -112,7 +123,7 @@ class ConsumerClient(object):
         elif show == 'json':
             return resources['content']
 
-    def getResourceNetworking(self, id):
+    def getResourceNetworking(self, id, show='json'):
         """
 		Function that will return networking information for a given resource.
 		Parameters:
@@ -130,7 +141,17 @@ class ConsumerClient(object):
                 networkList = i['value']['items']
                 for j in networkList:
                     entries = j['values']['entries']
-        return entries
+
+        if show == 'table':
+            table = PrettyTable(['Component','Value'])
+
+            for i in entries:
+                table.add_row([i['key'],i['value']['value']])
+
+            print table
+
+        elif show == 'json':
+            return entries
 
     def getRequest(self, id):
         """
