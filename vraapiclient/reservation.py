@@ -3,9 +3,9 @@ __author__ = 'https://github.com/chelnak'
 import json
 
 import requests
-from prettytable import PrettyTable
 
 from helpers import authenticate, checkResponse
+from prettytable import PrettyTable
 
 
 class ReservationClient(object):
@@ -104,7 +104,7 @@ class ReservationClient(object):
 
         return businessGroupId
 
-    def getAllBusinessGroups(self, tenant=None, show='table'):
+    def getAllBusinessGroups(self, tenant=None, show='table', limit=20):
         """
         Get All business groups
 		List ID and name for each business group
@@ -118,7 +118,8 @@ class ReservationClient(object):
         if tenant is None:
             tenant = "vsphere.local"
 
-        url = 'https://' + host + '/identity/api/tenants/' + tenant + '/subtenants'
+        url = 'https://' + host + '/identity/api/tenants/' + tenant + '/subtenants?limit={limit}'.format(
+            limit=limit)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -261,7 +262,7 @@ class ReservationClient(object):
 
         return reservation
 
-    def getAllReservations(self, show='table'):
+    def getAllReservations(self, show='table', limit=20):
         """
 		Get all reservations
 		Parameters:
@@ -271,7 +272,8 @@ class ReservationClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/reservation-service/api/reservations'
+        url = 'https://' + host + '/reservation-service/api/reservations?limit={limit}'.format(
+            limit=limit)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',

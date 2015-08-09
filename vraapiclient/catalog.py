@@ -61,14 +61,13 @@ class ConsumerClient(object):
         if show == 'table':
             table = PrettyTable(['Id', 'Name', 'Status', 'Catalog Item'])
             table.add_row([
-                resource['id'],
-                resource['name'],
-                resource['status'],
-                resource['catalogItem']['label']])
+                resource['id'], resource['name'], resource['status'],
+                resource['catalogItem']['label']
+            ])
 
             print table
 
-        elif show =='json':
+        elif show == 'json':
             return resource
 
     def getResourceIdByRequestId(self, id):
@@ -94,7 +93,7 @@ class ConsumerClient(object):
 
         return resourceId
 
-    def getAllResources(self, show='table'):
+    def getAllResources(self, show='table', limit=20):
         """
 		Function that will return all resources that are available to the current user.
 		"""
@@ -102,7 +101,8 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/resources'
+        url = 'https://' + host + '/catalog-service/api/consumer/resources?limit={limit}'.format(
+            limit=limt)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -143,10 +143,10 @@ class ConsumerClient(object):
                     entries = j['values']['entries']
 
         if show == 'table':
-            table = PrettyTable(['Component','Value'])
+            table = PrettyTable(['Component', 'Value'])
 
             for i in entries:
-                table.add_row([i['key'],i['value']['value']])
+                table.add_row([i['key'], i['value']['value']])
 
             print table
 
@@ -174,7 +174,7 @@ class ConsumerClient(object):
 
         return r.json()
 
-    def getEntitledCatalogItems(self, show='table'):
+    def getEntitledCatalogItems(self, show='table', limit=20):
         """
 		Function that will return all entitled catalog items for the current user.
 		"""
@@ -182,7 +182,8 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/entitledCatalogItems'
+        url = 'https://' + host + '/catalog-service/api/consumer/entitledCatalogItems?limit={limit}'.format(
+            limit=limit)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
