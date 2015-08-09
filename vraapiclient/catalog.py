@@ -102,7 +102,7 @@ class ConsumerClient(object):
         token = self.token
 
         url = 'https://' + host + '/catalog-service/api/consumer/resources?limit={limit}'.format(
-            limit=limt)
+            limit=limit)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
