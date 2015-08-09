@@ -262,7 +262,7 @@ class ReservationClient(object):
 
         return reservation
 
-    def getAllReservations(self, show='table'):
+    def getAllReservations(self, show='table', limit=20):
         """
 		Get all reservations
 		Parameters:
@@ -272,7 +272,8 @@ class ReservationClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/reservation-service/api/reservations'
+        url = 'https://' + host + '/reservation-service/api/reservations?limit={limit}'.format(
+            limit=limit)
 
         headers = {
             'Content-Type': 'application/json',
