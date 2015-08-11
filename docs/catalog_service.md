@@ -80,7 +80,7 @@ Return networking information for a given resource.
 
 You can display data from this function in a table as follows:
 
-``````
+```
 resourceId='171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
 client.getResourceNetworking(id=resourceId, show='table')
 ```
