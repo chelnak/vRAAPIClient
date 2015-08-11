@@ -7,6 +7,8 @@ Return all resources that are available to the current user.
 ###Parameters
 * [string]show = This determines what is returned. Use json to return a json object or
                     table to return a table. This parameter is not mandatory.
+* [int]limit = This determines how many entries are returned. If not specified,
+                    it will default to 20
 
 By default this function will return a table containing the id and name of the
 resource. This can be changed by adding the show parameter as follows
@@ -113,6 +115,8 @@ Return all entitled catalog items for the current user.
 ###Parameters
 * [string]show = This determines what is returned. Use json to return a json object or
                     table to return a table. This parameter is not mandatory.
+* [int]limit = This determines how many entries are returned. If not specified,
+                    it will default to 20
 
 By default this function will return a table containing the id and name of the
 resource. This can be changed by adding the show parameter as follows:
