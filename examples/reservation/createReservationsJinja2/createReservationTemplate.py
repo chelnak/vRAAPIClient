@@ -20,9 +20,9 @@ reservation = client.getReservation(reservationId)
 #Parse the response with json.loads so it looks right when we write out to a file
 reservationTemplate = json.loads(reservation)
 
+#Remove id
+reservationTemplate.pop('id')
+
 #Write out the parsed json to reservationTemplate.json
 with open('reservationTemplate.json', 'w') as t:
     json.dump(reservationTemplate, t, indent=4)
-
-#IMPORTANT:
-#Before you use the template to create a reservation, remove the ID from the bottom of the file
