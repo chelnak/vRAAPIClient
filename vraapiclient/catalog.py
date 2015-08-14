@@ -101,7 +101,7 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/resources?limit={limit}'.format(
+        url = 'https://' + host + '/catalog-service/api/consumer/resources?limit={limit}&$orderby=name%20asc'.format(
             limit=limit)
         headers = {
             'Content-Type': 'application/json',
@@ -182,7 +182,7 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/entitledCatalogItems?limit={limit}'.format(
+        url = 'https://' + host + '/catalog-service/api/consumer/entitledCatalogItems?limit={limit}&$orderby=name%20asc'.format(
             limit=limit)
         headers = {
             'Content-Type': 'application/json',
