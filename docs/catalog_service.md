@@ -41,6 +41,7 @@ If you want to return a json string, you will need to use json.dumps().
 resources = client.getAllResources(show='json')
 resourcesJSONString = json.dumps(resources)
 print resourcesJSONString
+```
 
 ##getResource
 
