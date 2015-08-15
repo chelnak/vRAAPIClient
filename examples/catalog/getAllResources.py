@@ -12,12 +12,12 @@ client = catalog.ConsumerClient(url, usr, passwd)
 client.getAllResources()
 
 #Get JSON Object
-resourcesJsonObject = client.getAllResources(show='json')
+resourcesJSONObject = client.getAllResources(show='json')
 
 #Loop through object and print name
-for i in resourcesJsonObject:
+for i in resourcesJSONObject:
     print i['name']
 
-#Use json.dumps() to get raw json
-resourcesDumped = json.dumps(resourcesJsonObject)
-print resourcesDumped
+#Use json.dumps() to get json string
+resourcesJSONString = json.dumps(resourcesJSONObject)
+print resourcesJSONString

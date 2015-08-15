@@ -11,7 +11,7 @@ Return all resources that are available to the current user.
                     it will default to 20.
 
 By default this function will return a table containing the id and name of the
-resource. This can be changed by adding the show parameter as follows
+resource. This can be changed by adding the show parameter as follows:
 
 ```
 resources = client.getAllResources(show='json')
@@ -29,13 +29,12 @@ for resource in resources:
   print resource['name']
 ```
 
-If you want to return raw json, you will need to use json.dumps().
+If you want to return a json string, you will need to use json.dumps().
 
 ```
 resources = client.getAllResources(show='json')
-resourcesRaw = json.dumps(resources)
-print resourcesRaw
-```
+resourcesJSONString = json.dumps(resources)
+print resourcesJSONString
 
 ##getResource
 
@@ -62,13 +61,13 @@ resource = client.getResource(id=resourceId)
 print resource['id']
 print resource['name']
 ```
-If you want to return raw json, you will need to use json.dumps().
+If you want to return a json string, you will need to use json.dumps().
 
 ```
 resourceId='171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
 resource = client.getResource(id=resourceId)
-resourceRaw = json.dumps(resource)
-print resourcesRaw
+resourceJSONStrong = json.dumps(resource)
+print resourcesJSONString
 ```
 
 ##getResourceNetworking
@@ -92,20 +91,20 @@ that you would with any object.
 
 ```
 resourceId='171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
-networking = client.getResourceNetworking(id=resourceId)
+resourceNetworking = client.getResourceNetworking(id=resourceId)
 
 for i in networking:
   print i['key']
   print i['value']['value']
 ```
 
-If you want to return raw json, you will need to use json.dumps().
+If you want to return a json string, you will need to use json.dumps().
 
 ```
 resourceId = '171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
-networking = client.getResourceNetworking(id=resourceId)
-networkingRaw = json.dumps(networking)
-print networkingRaw
+resourceNetworking = client.getResourceNetworking(id=resourceId)
+resourceNetworkingJSONString = json.dumps(networking)
+print resourceNetworkingJSONString
 ```
 
 ##getEntitledCatalogItems
@@ -137,12 +136,12 @@ for i in entitledCatalogItems:
   print i['catalogItem']['name']
 ```
 
-If you want to return raw json, you will need to use json.dumps().
+If you want to return a json string, you will need to use json.dumps().
 
 ```
 entitledCatalogItems = client.getEntitledCatalogItems(show='json')
-entitledCatalogItemsRaw = json.dumps(entitledCatalogItems)
-print entitledCatalogItemsRaw
+entitledCatalogItemsJSONString = json.dumps(entitledCatalogItems)
+print entitledCatalogItemsJSONString
 ```
 
 ##requestResource
@@ -154,7 +153,7 @@ Submit a request based on payload
 
 Before using this function you will need to generate a blueprint request file.
 
-To do this following instructions on Grant Orchards blog [here](http://grantorchard.com/vcac/concepts/exploring-vcac-api-part-1/)
+To do this follow the instructions on Grant Orchards blog [here](http://grantorchard.com/vcac/concepts/exploring-vcac-api-part-1/)
 
 ###Basic example:
 

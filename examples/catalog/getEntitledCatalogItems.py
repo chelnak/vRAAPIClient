@@ -9,7 +9,6 @@ from vraapiclient import catalog
 client = catalog.ConsumerClient(url, usr, passwd)
 
 #Print table
-
 client.getEntitledCatalogItems()
 
 #Get JSON Object
@@ -21,8 +20,6 @@ for i in entitledCatalogItems:
 	print i['catalogItem']['id']
 	print i['catalogItem']['name']
 
-
-#Use json.dumps() to get raw json
-entitledCatalogItemsRaw = json.dumps(entitledCatalogItems)
-
-print entitledCatalogItemsRaw
+#Use json.dumps() to get json string
+entitledCatalogItemsJSONString = json.dumps(entitledCatalogItems)
+print entitledCatalogItemsJSONString
