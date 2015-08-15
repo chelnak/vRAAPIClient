@@ -11,7 +11,13 @@ Return all resources that are available to the current user.
                     it will default to 20.
 
 By default this function will return a table containing the id and name of the
-resource. This can be changed by adding the show parameter as follows:
+resource.
+
+```
+client.getAllResources()
+```
+
+This can be changed by adding the show parameter as follows:
 
 ```
 resources = client.getAllResources(show='json')
@@ -61,6 +67,7 @@ resource = client.getResource(id=resourceId)
 print resource['id']
 print resource['name']
 ```
+
 If you want to return a json string, you will need to use json.dumps().
 
 ```
@@ -118,7 +125,13 @@ Return all entitled catalog items for the current user.
                     it will default to 20.
 
 By default this function will return a table containing the id and name of the
-resource. This can be changed by adding the show parameter as follows:
+resource.
+
+```
+client.getEntitledCatalogItems()
+```
+
+This can be changed by adding the show parameter as follows:
 
 ```
 entitledCatalogItems = client.getEntitledCatalogItems(show='json')
@@ -147,6 +160,8 @@ print entitledCatalogItemsJSONString
 ##requestResource
 
 Submit a request based on payload
+
+This function will return the id of the request.
 
 ###Parameters
 * [json]payload = json request (example: request.json)
