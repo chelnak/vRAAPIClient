@@ -74,7 +74,7 @@ If you want to return a json string, you will need to use json.dumps().
 ```
 resourceId='171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
 resource = client.getResource(id=resourceId)
-resourceJSONStrong = json.dumps(resource)
+resourceJSONString = json.dumps(resource)
 print resourcesJSONString
 ```
 
@@ -109,7 +109,7 @@ If you want to return a json string, you will need to use json.dumps().
 ```
 resourceName='vra-test-01'
 resource = client.getResourceByName(name=resourceName)
-resourceJSONStrong = json.dumps(resource)
+resourceJSONString = json.dumps(resource)
 print resourcesJSONString
 ```
 
@@ -191,6 +191,48 @@ If you want to return a json string, you will need to use json.dumps().
 entitledCatalogItems = client.getEntitledCatalogItems(show='json')
 entitledCatalogItemsJSONString = json.dumps(entitledCatalogItems)
 print entitledCatalogItemsJSONString
+```
+
+##getRequest
+
+Return information on a given request
+
+###Parameters
+* [string]id = id of the vRA request
+* [string]show = This determines what is returned. Use json to return a json object or
+                    table to return a table. This parameter is not mandatory.
+
+By default this function will return a table.
+
+```
+requestId = '171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
+client.getRequest(id=requestId)
+```
+
+This can be changed by adding the show parameter as follows:
+
+```
+requestId = '171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
+request = client.getRequest(id=requestId, show='json')
+```
+
+show='json' will return an object. You can interact with this object in the same way
+that you would with any object.
+
+```
+requestId = '171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
+request = client.getRequest(id=requestId, show='json')
+print request['id']
+print request['name']
+```
+
+If you want to return a json string, you will need to use json.dumps().
+
+```
+requestId = '171d8ab9-1b5b-44e8-ac20-b559da4c1ef3'
+request = client.getRequest(id=requestId, show='json')
+requestJSONString = json.dumps(request)
+print requestJSONString
 ```
 
 ##getAllRequests
@@ -296,38 +338,3 @@ print "Request submitted: {id}".format(id=request)
 ```
 
 For more detailed examples please see the examples/requests directory of this project
-
-##getRequest
-
-Return information on a given request
-
-###Parameters
-* [string]id = Id of the vRA request.
-
-```
-request = clientRequest(requestId)
-print request['state']
-```
-
-##getResourceIdByRequestId
-
-### Depreciated. Please see getRequestResource
-
-Search for a resource with a matching request id
-
-###Parameters
-* [string]id = Request id of the vRA resource
-
-When you deploy a machine with requestResource() it will return the request id. Use this function
-to get the ID of the resource you have just deployed. Once you have the resource id, you can go on
-to query things like networking.
-
-###Example with getResourceNetworking
-
-```
-resourceId = client.getResourceIdByRequestId(requestId)
-resourceNetworking = client.getResourceNetworking(resourceId)
-
-for i in resourceNetworking:
-  print "{key} : {value}".format(key=i['key'], value=i['value']['value'])
-```

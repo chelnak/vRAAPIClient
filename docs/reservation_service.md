@@ -161,8 +161,8 @@ If you want to return a json string, you will need to use json.dumps().
 ```
 reservationeName='vra-cl-res-01'
 reservation = client.getReservationByName(name=reservationeName, show='json')
-reservationJSONStrong = json.dumps(reservation)
-print reservationJSONStrong
+reservationJSONString = json.dumps(reservation)
+print reservationJSONString
 ```
 
 ##createReservation

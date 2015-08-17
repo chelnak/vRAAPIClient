@@ -230,6 +230,7 @@ class ConsumerClient(object):
 		Function that will return request information for a given request.
 		Parameters:
 			id = the id of the vRA request.
+            show = return data as a table or json object
 		"""
 
         host = self.host
@@ -244,7 +245,16 @@ class ConsumerClient(object):
         r = requests.get(url=url, headers=headers, verify=False)
         checkResponse(r)
 
-        return r.json()
+        request = r.json()
+
+        if show == 'table':
+            table = PrettyTable(['Id', 'Request Number', 'Item', 'State'])
+            table.add_row([request['id'], request['requestNumber'], request['requestedItemName'], request['state']])
+
+            print table
+
+        elif show == 'json':
+            return request
 
     def getAllRequests(self, show='table', limit=20):
         """
