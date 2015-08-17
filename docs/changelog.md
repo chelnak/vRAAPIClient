@@ -1,7 +1,9 @@
 #17/08/2015
+* Version 1.0.2.3
 * Added catalog.getResourceByName() with examples and docs
 * Added catalog.getRequestResouce added docs and updated requestResourceAndWait examples
 * Added catalog.getAllRequests with examples and docs
+* Added reservation.getReservationByName with examples and docs
 
 ##16/08/2015
 * Version 1.0.2.2

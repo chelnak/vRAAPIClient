@@ -8,7 +8,7 @@ from vraapiclient import catalog
 
 client = catalog.ConsumerClient(url, usr, passwd)
 
-resourceName = 'ITS-SP-161'
+resourceName = 'dev-svr-02'
 
 #Print table
 client.getResourceByName(name=resourceName, show='table')
@@ -20,6 +20,6 @@ resource = client.getResourceByName(name=resourceName)
 print resource['id']
 print resource['name']
 
-#Use json.dumps() to get raw json
-resourceRaw = json.dumps(resource)
-print resourceRaw
+#Use json.dumps() to get json strong
+resourceJSONString = json.dumps(resource)
+print resourceJSONString
