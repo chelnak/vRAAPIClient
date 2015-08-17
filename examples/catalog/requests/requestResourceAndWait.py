@@ -41,7 +41,9 @@ while True:
 
 #Return networking information for the new resource
 resource = client.getRequestResource(requestId)
-resourceId = resource['id']
+#Grab the id here.
+#We know we have only requested a single resource so we can specify and index of 0
+resourceId = resource[0]['id']
 resourceNetworking = client.getResourceNetworking(resourceId)
 
 for i in resourceNetworking:
