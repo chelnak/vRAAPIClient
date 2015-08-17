@@ -21,8 +21,4 @@ print reservation['name']
 
 #Use json.dumps() to get json string
 reservationJSONString = json.dumps(reservation)
-print reservationRaw
-
-#Use json.dumps() to get json string
-entitledCatalogItemsJSONString = json.dumps(entitledCatalogItems)
-print entitledCatalogItemsJSONString
+print reservationJSONString
