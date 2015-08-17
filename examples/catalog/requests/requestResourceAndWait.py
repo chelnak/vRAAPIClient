@@ -40,7 +40,8 @@ while True:
     sleep(2)
 
 #Return networking information for the new resource
-resourceId = client.getResourceIdByRequestId(requestId)
+resource = client.getRequestResource(requestId)
+resourceId = resource['id']
 resourceNetworking = client.getResourceNetworking(resourceId)
 
 for i in resourceNetworking:

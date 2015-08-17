@@ -1,6 +1,5 @@
 #!/usr/bin/python
 __author__ = 'https://github.com/chelnak'
-
 import json
 
 import requests
@@ -42,13 +41,14 @@ class ConsumerClient(object):
         """
 		Function that will get a vRA resource by id.
 		Parameters:
+            show = return data as a table or json object
 			id = id of the vRA resource.
 		"""
 
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/resources/' + id
+        url = 'https://{host}/catalog-service/api/consumer/resources/{id}'.format(host=host, id=id)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -70,6 +70,40 @@ class ConsumerClient(object):
         elif show == 'json':
             return resource
 
+    def getResourceByName(self, name, show='json'):
+        """
+        Function that will get a vRA resource by id.
+        Parameters:
+            show = return data as a table or json object
+            name = name of the vRA resource.
+        """
+
+        host = self.host
+        token = self.token
+
+        url = "https://{host}/catalog-service/api/consumer/resources?$filter=name%20eq%20'{name}'".format(host=host, name=name)
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.get(url=url, headers=headers, verify=False)
+        checkResponse(r)
+        resource = r.json()
+
+        if show == 'table':
+
+            table = PrettyTable(['Id', 'Name', 'Status', 'Catalog Item'])
+            table.add_row([
+                resource['content'][0]['id'], resource['content'][0]['name'], resource['content'][0]['status'],
+                        resource['content'][0]['catalogItem']['label']
+                    ])
+
+            print table
+
+        elif show == 'json':
+            return resource['content'][0]
+
     def getResourceIdByRequestId(self, id):
         """
 		Function that will search for a resource with a matching requestId.
@@ -80,7 +114,7 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/resources?$filter=request eq \'' + id + '\''
+        url = "https://{host}/catalog-service/api/consumer/resources?$filter=request%20eq%20'{id}'.format(host=host, id=id)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -96,13 +130,16 @@ class ConsumerClient(object):
     def getAllResources(self, show='table', limit=20):
         """
 		Function that will return all resources that are available to the current user.
+        Parameters:
+            show = return data as a table or json object
+        	limit = The number of entries per page.
 		"""
 
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/resources?limit={limit}&$orderby=name%20asc'.format(
-            limit=limit)
+        url = 'https://{host}/catalog-service/api/consumer/resources?limit={limit}&$orderby=name%20asc'.format(
+            host=host, limit=limit)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -127,6 +164,7 @@ class ConsumerClient(object):
         """
 		Function that will return networking information for a given resource.
 		Parameters:
+            show = return data as a table or json object
 			id = id of the vRA resource.
 		"""
 
@@ -153,37 +191,19 @@ class ConsumerClient(object):
         elif show == 'json':
             return entries
 
-    def getRequest(self, id):
-        """
-		Function that will return request information for a given request.
-		Parameters:
-			id = the id of the vRA request.
-		"""
-
-        host = self.host
-        token = self.token
-
-        url = 'https://' + host + '/catalog-service/api/consumer/requests/' + id
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': token
-        }
-        r = requests.get(url=url, headers=headers, verify=False)
-        checkResponse(r)
-
-        return r.json()
-
     def getEntitledCatalogItems(self, show='table', limit=20):
         """
 		Function that will return all entitled catalog items for the current user.
+        Parameters:
+            show = return data as a table or json object
+    		limit = The number of entries per page.
 		"""
 
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/entitledCatalogItems?limit={limit}&$orderby=name%20asc'.format(
-            limit=limit)
+        url = 'https://{host}/catalog-service/api/consumer/entitledCatalogItems?limit={limit}&$orderby=name%20asc'.format(
+            host=host, limit=limit)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -205,6 +225,84 @@ class ConsumerClient(object):
         elif show == 'json':
             return items['content']
 
+    def getRequest(self, id):
+        """
+		Function that will return request information for a given request.
+		Parameters:
+			id = the id of the vRA request.
+		"""
+
+        host = self.host
+        token = self.token
+
+        url = 'https://{host}/catalog-service/api/consumer/requests/{id}'.format(host=host, id=id)
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.get(url=url, headers=headers, verify=False)
+        checkResponse(r)
+
+        return r.json()
+
+    def getAllRequests(self, show='table', limit=20):
+        """
+		Function that will return the resource that were provisioned as a result of a given request.
+
+		Parameters:
+                show = return data as a table or json object
+			    limit = The number of entries per page.
+		"""
+
+        host = self.host
+        token = self.token
+
+        url = 'https://{host}/catalog-service/api/consumer/requests?limit={limit}&$orderby=requestNumber%20desc'.format(host=host, limit=limit)
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.get(url=url, headers=headers, verify=False)
+        checkResponse(r)
+
+        items = r.json()
+
+        if show == 'table':
+            table = PrettyTable(['Id', 'Request Number', 'Item', 'State'])
+
+            for i in items['content']:
+                table.add_row([i['id'], i['requestNumber'], i['requestedItemName'], i['state']])
+
+            print table
+
+        elif show == 'json':
+            return items['content']
+
+    def getRequestResource(self, id):
+        """
+		Function that will return the resource that were provisioned as a result of a given request.
+		Parameters:
+			id = the id of the vRA request.
+		"""
+
+        host = self.host
+        token = self.token
+
+        url = 'https://{host}/catalog-service/api/consumer/requests/{id}/resources'.format(host=host, id=id)
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.get(url=url, headers=headers, verify=False)
+        checkResponse(r)
+
+        resource = r.json()
+
+        return resource['content']
+
     def requestResource(self, payload):
         """
 		Function that will submit a request based on payload.
@@ -216,7 +314,7 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/catalog-service/api/consumer/requests'
+        url = 'https://{host}/catalog-service/api/consumer/requests'
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',

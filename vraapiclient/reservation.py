@@ -38,6 +38,126 @@ class ReservationClient(object):
 
         print self.token
 
+    def getAllBusinessGroups(self, tenant=None, show='table', limit=20):
+        """
+        Get All business groups
+		List ID and name for each business group
+        Parameters:
+            tenant = vRA tenant. if null then it will default to vsphere.local
+        """
+
+        host = self.host
+        token = self.token
+
+        if tenant is None:
+            tenant = "vsphere.local"
+
+        url = 'https://{host}/identity/api/tenants/{tenant}/subtenants?limit={limit}&$orderby=name'.format(
+            host=host, tenant=tenant, limit=limit)
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.get(url=url, headers=headers, verify=False)
+        checkResponse(r)
+
+        businessGroups = r.json()
+
+        if show == 'table':
+            table = PrettyTable(['Id', 'Name'])
+
+            for i in businessGroups['content']:
+                table.add_row([i['id'], i['name']])
+
+            print table
+        elif show == 'json':
+            return businessGroups['content']
+
+    def getReservation(self, reservationid):
+        """
+		Verify a reservation and get reservation details
+		http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-2A2D96DE-9BBE-414B-82AB-DD70B82D3E0C.html
+		Parameters:
+			reservationid = Id of a new or existing reservation
+		"""
+
+        host = self.host
+        token = self.token
+
+        url = 'https://{host}/reservation-service/api/reservations/{reservationid}'.format(host=host, reservationid=reservationid)
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.get(url=url, headers=headers, verify=False)
+        checkResponse(r)
+
+        reservation = json.dumps(r.json())
+
+        return reservation
+
+    def getAllReservations(self, show='table', limit=20):
+        """
+		Get all reservations
+		Parameters:
+			show = Output either table format or raw json
+		"""
+
+        host = self.host
+        token = self.token
+
+        url = 'https://{host}/reservation-service/api/reservations?limit={limit}&$orderby=name'.format(
+            host=host, limit=limit)
+
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.get(url=url, headers=headers, verify=False)
+        checkResponse(r)
+
+        reservations = r.json()
+
+        if show == 'table':
+            table = PrettyTable(['Id', 'Name'])
+
+            for i in reservations['content']:
+                table.add_row([i['id'], i['name']])
+
+            print table
+        elif show == 'json':
+            return reservations['content']
+
+    def createReservation(self, payload):
+        """
+		Creating a reservation by type
+		http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-11510887-0F55-4EA4-858C-9881F94C718B.html
+		Parameters:
+			payload = JSON payload containing the reservation information
+		"""
+
+        host = self.host
+        token = self.token
+
+        url = 'https://{host}/reservation-service/api/reservations'.format(host=host)
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.post(url=url,
+                          headers=headers,
+                          data=json.dumps(payload),
+                          verify=False)
+        checkResponse(r)
+
+        reservationId = r.headers['location'].split('/')[6]
+
+        return reservationId
+
     def getReservationTypes(self):
         """
 		Display a list of supported reservation types:
@@ -47,7 +167,7 @@ class ReservationClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/reservation-service/api/reservations/types'
+        url = 'https://{host}/reservation-service/api/reservations/types'.format(host=host)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -70,7 +190,7 @@ class ReservationClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/reservation-service/api/data-service/schema/' + schemaclassid + '/default'
+        url = 'https://{host}/reservation-service/api/data-service/schema/{schemaclassid}/default'.format(host=host, schemaclassid=schemaclassid)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -91,7 +211,13 @@ class ReservationClient(object):
 			businessGroupName = For future use. Need to be able to fetch ID from business group name
 		"""
 
-        url = 'https://' + host + '/identity/api/tenants/' + tenant + '/subtenants'
+        host = self.host
+        token = self.token
+
+        if tenant is None:
+            tenant = "vsphere.local"
+
+        url = 'https://{host}/identity/api/tenants/{tenant}/subtenants'.format{host=host, tenant=tenant}
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -104,42 +230,6 @@ class ReservationClient(object):
 
         return businessGroupId
 
-    def getAllBusinessGroups(self, tenant=None, show='table', limit=20):
-        """
-        Get All business groups
-		List ID and name for each business group
-        Parameters:
-            tenant = vRA tenant. if null then it will default to vsphere.local
-        """
-
-        host = self.host
-        token = self.token
-
-        if tenant is None:
-            tenant = "vsphere.local"
-
-        url = 'https://' + host + '/identity/api/tenants/' + tenant + '/subtenants?limit={limit}'.format(
-            limit=limit)
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': token
-        }
-        r = requests.get(url=url, headers=headers, verify=False)
-        checkResponse(r)
-
-        businessGroups = r.json()
-
-        if show == 'table':
-            table = PrettyTable(['Id', 'Name'])
-
-            for i in businessGroups['content']:
-                table.add_row([i['id'], i['name']])
-
-            print table
-        elif show == 'json':
-            return businessGroups['content']
-
     def getComputeResourceForReservation(self, schemaclassid):
         """
 		Get a compute resource for the reservation
@@ -151,7 +241,7 @@ class ReservationClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/reservation-service/api/data-service/schema/' + schemaclassid + '/default/computeResource/values'
+        url = 'https://{host}/reservation-service/api/data-service/schema/{schemaclassid}/default/computeResource/values'.format(host=host, schemaclassid=schemaclassid)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -183,7 +273,7 @@ class ReservationClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://' + host + '/reservation-service/api/data-service/schema/' + schemaclassid + '/default/' + fieldid + '/values'
+        url = 'https://{host}/reservation-service/api/data-service/schema/{schemaclassid}/default/{fieldid}/values'.format(host=host, schemaclassid=schemaclassid, fieldid=fieldid)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -210,87 +300,3 @@ class ReservationClient(object):
         resourceSchema = r.json()
 
         return resourceSchema
-
-    def createReservation(self, payload):
-        """
-		Creating a reservation by type
-		http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-11510887-0F55-4EA4-858C-9881F94C718B.html
-		Parameters:
-			payload = JSON payload containing the reservation information
-		"""
-
-        host = self.host
-        token = self.token
-
-        url = 'https://' + host + '/reservation-service/api/reservations'
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': token
-        }
-        r = requests.post(url=url,
-                          headers=headers,
-                          data=json.dumps(payload),
-                          verify=False)
-        checkResponse(r)
-
-        reservationId = r.headers['location'].split('/')[6]
-
-        return reservationId
-
-    def getReservation(self, reservationid):
-        """
-		Verify a reservation and get reservation details
-		http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-2A2D96DE-9BBE-414B-82AB-DD70B82D3E0C.html
-		Parameters:
-			reservationid = Id of a new or existing reservation
-		"""
-
-        host = self.host
-        token = self.token
-
-        url = 'https://' + host + '/reservation-service/api/reservations/' + reservationid
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': token
-        }
-        r = requests.get(url=url, headers=headers, verify=False)
-        checkResponse(r)
-
-        reservation = json.dumps(r.json())
-
-        return reservation
-
-    def getAllReservations(self, show='table', limit=20):
-        """
-		Get all reservations
-		Parameters:
-			show = Output either table format or raw json
-		"""
-
-        host = self.host
-        token = self.token
-
-        url = 'https://' + host + '/reservation-service/api/reservations?limit={limit}'.format(
-            limit=limit)
-
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': token
-        }
-        r = requests.get(url=url, headers=headers, verify=False)
-        checkResponse(r)
-
-        reservations = r.json()
-
-        if show == 'table':
-            table = PrettyTable(['Id', 'Name'])
-
-            for i in reservations['content']:
-                table.add_row([i['id'], i['name']])
-
-            print table
-        elif show == 'json':
-            return reservations['content']

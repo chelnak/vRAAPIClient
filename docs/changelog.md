@@ -1,3 +1,15 @@
+#17/08/2015
+* Added catalog.getResourceByName() with examples and docs
+* Added catalog.getRequestResouce added docs and updated requestResourceAndWait examples
+* Added catalog.getAllRequests with examples and docs
+
+##16/08/2015
+* Version 1.0.2.2
+* Merged pull request from
+* Moved to str.format
+* Added $&orderby=name to reservation.getAllBusinessGroups & reservation.getAllReservations
+* Noticed that orderby does not work for getAllReservations <- turns out this is not supported by the vRA API
+
 ##06/08/2015
 * Version 1.0.1
 * Added show option to catalot.getResource and catalog.getResourceNetworking()

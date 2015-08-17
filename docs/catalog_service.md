@@ -78,6 +78,41 @@ resourceJSONStrong = json.dumps(resource)
 print resourcesJSONString
 ```
 
+##getResourceByName
+
+Get a vRA resource by name
+
+###Parameters
+* [string]name = name of the vRA resource
+* [string]show = This determines what is returned. Use json to return a json object or
+                    table to return a table. This parameter is not mandatory.
+
+You can display data from this function in a table as follows:
+
+```
+resourceName='vra-test-01'
+client.getResourceByName(name=resourceName, show='table')
+```
+
+By default this function will return a json object. You can interact with this object in the same way
+that you would with any object.
+
+```
+resourceName='vra-test-01'
+resource = client.getResourceByName(name=resourceName)
+print resource['id']
+print resource['name']
+```
+
+If you want to return a json string, you will need to use json.dumps().
+
+```
+resourceName='vra-test-01'
+resource = client.getResourceByName(name=resourceName)
+resourceJSONStrong = json.dumps(resource)
+print resourcesJSONString
+```
+
 ##getResourceNetworking
 
 Return networking information for a given resource.
@@ -158,6 +193,70 @@ entitledCatalogItemsJSONString = json.dumps(entitledCatalogItems)
 print entitledCatalogItemsJSONString
 ```
 
+##getAllRequests
+
+Get All requests
+
+###Parameters
+* [string]show = This determines what is returned. Use json to return a json object or
+                    table to return a table. This parameter is not mandatory.
+* [int]limit = This determines how many entries are returned. If not specified,
+                    it will default to 20.
+
+By default this function will return a table containing the id, requestNumber, requestedItemName and state of each request.
+
+```
+client.getAllRequests()
+```
+
+This can be changed by adding the show parameter as follows:
+
+```
+requests = client.getAllRequests(show='json')
+```
+
+show='json' will return an object. You can interact with this object in the same way
+that you would with any object.
+
+```
+requests = client.getAllRequests(show='json')
+
+for request in requests:
+
+  print resource['id']
+  print resource['requestedItemName']
+```
+
+If you want to return a json string, you will need to use json.dumps().
+
+```
+requests = client.getAllRequests(show='json')
+requestsJSONString = json.dumps(requests)
+print requestsJSONString
+```
+
+##getRequestResource
+
+Retrieves the resources that were provisioned as a result of a given request
+
+###Parameters
+* [string]id = Request id of the vRA resource
+
+When you deploy a machine with requestResource() it will return the request id. Use this function
+to get the ID of the resource you have just deployed. Once you have the resource id, you can go on
+to query things like networking.
+
+###Example with getResourceNetworking
+
+```
+resource = client.getRequestResouce(requestId)
+resourceId = resource['id']
+resourceNetworking = client.getResourceNetworking(resourceId)
+
+for i in resourceNetworking:
+  print "{key} : {value}".format(key=i['key'], value=i['value']['value'])
+```
+
 ##requestResource
 
 Submit a request based on payload
@@ -211,6 +310,8 @@ print request['state']
 ```
 
 ##getResourceIdByRequestId
+
+### Depreciated. Please see getRequestResource
 
 Search for a resource with a matching request id
 
