@@ -114,7 +114,7 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = "https://{host}/catalog-service/api/consumer/resources?$filter=request%20eq%20'{id}'.format(host=host, id=id)
+        url = "https://{host}/catalog-service/api/consumer/resources?$filter=request%20eq%20'{id}'".format(host=host, id=id)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',

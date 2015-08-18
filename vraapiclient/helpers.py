@@ -14,7 +14,7 @@ def checkResponse(r):
 		r = http response object.
 	"""
 
-    acceptedResponses = [200, 201]
+    acceptedResponses = [200, 201, 203, 204]
     if not r.status_code in acceptedResponses:
         print "STATUS: {status} ".format(status=r.status_code)
         print "ERROR: " + r.text

@@ -16,7 +16,7 @@ requestsJSONObject = client.getAllRequests(show='json')
 
 #Loop through object and print name
 for i in requestsJSONObject:
-    print i['name']
+    print i['id']
 
 #Use json.dumps() to get json string
 requestsJSONString = json.dumps(requestsJSONObject)

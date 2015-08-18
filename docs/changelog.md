@@ -1,3 +1,9 @@
+#18/08/2015
+* Version 1.0.2.4
+* Fixed issue with getResourceIdByRequestId and a missing double quote
+* Fixed issue with getAllRequests.py example
+* Added acceptedResponses = [200, 201, 203, 204] to helpers.py
+
 #17/08/2015
 * Version 1.0.2.3
 * Added catalog.getResourceByName() with examples and docs
