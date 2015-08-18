@@ -57,3 +57,4 @@ target/
 priv_*
 
 archive/
+.idea/

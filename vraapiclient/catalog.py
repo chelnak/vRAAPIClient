@@ -324,7 +324,7 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://{host}/catalog-service/api/consumer/requests'
+        url = 'https://{host}/catalog-service/api/consumer/requests'.format(host=host)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
