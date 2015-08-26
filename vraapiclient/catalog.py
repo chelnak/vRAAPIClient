@@ -225,7 +225,7 @@ class ConsumerClient(object):
         elif show == 'json':
             return items['content']
 
-    def getRequest(self, id):
+    def getRequest(self, id, show='table'):
         """
 		Function that will return request information for a given request.
 		Parameters:
@@ -324,7 +324,7 @@ class ConsumerClient(object):
         host = self.host
         token = self.token
 
-        url = 'https://{host}/catalog-service/api/consumer/requests'
+        url = 'https://{host}/catalog-service/api/consumer/requests'.format(host=host)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',

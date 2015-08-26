@@ -76,7 +76,7 @@ class ReservationClient(object):
         elif show == 'json':
             return businessGroups['content']
 
-    def getReservation(self, show='table', reservationid):
+    def getReservation(self, reservationid, show='table'):
         """
 		Verify a reservation and get reservation details
 		http://pubs.vmware.com/vra-62/index.jsp#com.vmware.vra.programming.doc/GUID-2A2D96DE-9BBE-414B-82AB-DD70B82D3E0C.html
@@ -261,7 +261,7 @@ class ReservationClient(object):
         if tenant is None:
             tenant = "vsphere.local"
 
-        url = 'https://{host}/identity/api/tenants/{tenant}/subtenants'.format{host=host, tenant=tenant}
+        url = 'https://{host}/identity/api/tenants/{tenant}/subtenants'.format(host=host, tenant=tenant)
         headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
