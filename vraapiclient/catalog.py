@@ -225,7 +225,7 @@ class ConsumerClient(object):
         elif show == 'json':
             return items['content']
 
-    def getRequest(self, id):
+    def getRequest(self, id, show='table'):
         """
 		Function that will return request information for a given request.
 		Parameters:
