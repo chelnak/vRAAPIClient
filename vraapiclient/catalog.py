@@ -421,7 +421,7 @@ class ConsumerClient(object):
 
         return id
 
-    def performAction(self, resource, actionName=None, actionId=None):
+    def performAction(self, resource, actionName=None, actionId=None, requestDataEntries=None):
         assert actionName or actionId
         assert not actionName or not actionId
         if not actionId:
@@ -439,7 +439,7 @@ class ConsumerClient(object):
             "state": "SUBMITTED",
             "requestNumber": 0,
             "requestData": {
-                "entries": []
+                "entries": requestDataEntries if requestDataEntries else []
             }
         }
         return self.requestResource(requestData)
