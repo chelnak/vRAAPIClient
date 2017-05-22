@@ -104,6 +104,42 @@ class ConsumerClient(object):
         elif show == 'json':
             return resource['content'][0]
 
+    def getResourceByBusinessGroup(self, name, limit=100, show='json'):
+        """
+        Function that will get all vRA resources running
+        for a specific Business group
+        Parameters:
+            show = return data as a table or json object
+            name = name of the vRA resource.
+        """
+
+        host = self.host
+        token = self.token
+
+        url = "https://{host}/catalog-service/api/consumer/resources?$filter=organization/subTenant/name%20eq%20'{name}'&limit={limit}".format(host=host, name=name, limit=limit)
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+        r = requests.get(url=url, headers=headers, verify=False)
+        checkResponse(r)
+        resource = r.json()
+
+        if show == 'table':
+
+            table = PrettyTable(['Id', 'Name', 'Description','Label' 'Status'])
+            for item in resource['content']:
+                table.add_row([
+                    item['id'], item['name'], item['description'],
+                    item['resourceTypeRef']['label'], item['status'],
+                    ])
+
+            print table
+
+        elif show == 'json':
+            return resource
+
     def getResourceIdByName(self, name):
         return self.getResourceByName(name)["id"]
 
